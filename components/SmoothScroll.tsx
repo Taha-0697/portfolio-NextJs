@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import Lenis from "lenis";
+import { ReactNode, useEffect } from "react";
 
-export default function SmoothScroll({ children }) {
+export default function SmoothScroll({ children }: { children: ReactNode }) {
+
   useEffect(() => {
-    let lenis;
+    let lenis: Lenis | null 
 
     (async () => {
       const Lenis = (await import("lenis")).default;
@@ -14,8 +16,8 @@ export default function SmoothScroll({ children }) {
         smoothWheel: true,
       });
 
-      function raf(time) {
-        lenis.raf(time);
+      function raf(time: number) {
+        lenis?.raf(time);
         requestAnimationFrame(raf);
       }
 

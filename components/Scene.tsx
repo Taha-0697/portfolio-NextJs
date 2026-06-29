@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { Float, Sphere } from "@react-three/drei";
 
 
-function Blob({ position}) {
+function Blob({ position }: { position: [number, number, number] }) {
   return (
     <Float speed={2} floatIntensity={2}>
       <Sphere args={[1, 64, 64]} position={position}>
