@@ -6,6 +6,7 @@ import { FaEnvelope, FaPhone, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
 export default function Contact () {
   const [openup, setOpenup] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [selectedService, setSelectedService] = useState('')
 
   const whatsappNumbers = [
     { code: '968', number: '94122731' },
@@ -21,7 +22,6 @@ export default function Contact () {
 
     const form = e.currentTarget
     const formData = new FormData(form)
-    const data = Object.fromEntries(formData.entries())
 
     const payload = {
       customer_name: formData.get('name'),
@@ -29,8 +29,9 @@ export default function Contact () {
       customer_phone: formData.get('phone'),
       company: formData.get('company'),
       service: formData.get('service'),
+      other_service: formData.get('otherService'),
       budget: formData.get('budget'),
-      features: formData.get('features'), // optional (you don't have this field yet)
+      features: formData.get('features'),
       message: formData.get('message'),
       source: 'portfolio-website'
     }
@@ -45,6 +46,7 @@ export default function Contact () {
       if (!res.ok) throw new Error('Request failed')
 
       alert('Message sent successfully 🚀')
+      setSelectedService("")
       form.reset()
     } catch (err) {
       alert('Something went wrong. Please try again.')
@@ -191,14 +193,36 @@ export default function Contact () {
 
           <div className='form-group'>
             <label htmlFor='service'>Service Required *</label>
-            <select id='service' name='service' required disabled={loading}>
+            <select
+              id='service'
+              name='service'
+              required
+              disabled={loading}
+              value={selectedService}
+              onChange={e => setSelectedService(e.target.value)}
+            >
               <option value=''>Select a service</option>
-              <option>E-Commerce Website</option>
-              <option>Business Website</option>
-              <option>Web Application</option>
+              <option value='E-Commerce Website'>E-Commerce Website</option>
+              <option value='Business Website'>Business Website</option>
+              <option value='Web Application'>Web Application</option>
+              <option value='Mobile Application'>Mobile Application</option>
+              <option value='Custom Solution'>Custom Solution</option>
+              <option value='Other'>Other</option>
             </select>
           </div>
 
+{selectedService === 'Other' && (
+  <div className='form-group'>
+    <label htmlFor='otherService'>Others *</label>
+    <input
+      id='otherService'
+      name='otherService'
+      required
+      placeholder='Please specify the service'
+      disabled={loading}
+    />
+  </div>
+)}
           <div className='form-group'>
             <label htmlFor='budget'>Budget Range *</label>
             <select id='budget' name='budget' required disabled={loading}>

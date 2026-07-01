@@ -11,13 +11,13 @@ export async function POST (req: Request) {
       customer_phone: data.customer_phone,
       company: data.company,
       service: data.service,
+      other_service: data.service === 'Other' ? data.other_service || '' : '',
       budget: data.budget,
       features: data.features,
       message: data.message,
       source: data.source,
       date: new Date().toLocaleString()
     }
-
     // 1️⃣ Send email to YOU (admin)
     await emailjs.send(
       process.env.EMAILJS_SERVICE_ID!,
