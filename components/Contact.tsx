@@ -178,9 +178,10 @@ export default function Contact () {
             </div>
 
             <div className='form-group'>
-              <label htmlFor='company'>Company</label>
+              <label htmlFor='company'>Company *</label>
               <input
                 id='company'
+                required
                 name='company'
                 placeholder='Your Company Name'
                 disabled={loading}

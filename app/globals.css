@@ -13,6 +13,10 @@ html {
     --secondary: #e94560;
     --accent: #00d4ff;
 
+    --light: #f3f4f6;
+    --dark: #0f172a;
+
+
     --bg: #0f172a;
     --surface: #111c33;
     --surface-2: #16213e;
@@ -846,6 +850,11 @@ nav a:hover::after {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
     background: rgba(0, 212, 255, 0.05);
+}
+
+.form-group select option {
+    background: var(--surface);
+    color: var(--light);
 }
 
 .contact-form button {
