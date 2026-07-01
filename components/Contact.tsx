@@ -30,7 +30,7 @@ export default function Contact () {
       company: formData.get('company'),
       service: formData.get('service'),
       budget: formData.get('budget'),
-      features: '', // optional (you don't have this field yet)
+      features: formData.get('features'), // optional (you don't have this field yet)
       message: formData.get('message'),
       source: 'portfolio-website'
     }
